@@ -11,3 +11,7 @@ Additionally, the working reference solution you've been provided with will be i
 Lastly, as an interviewer, your most important job is to provide constructive feedback to your interviewee. This is very important, since the whole point of this exercise is to get you all more comfortable and better prepared for whiteboarding in a real-world interview setting. Tell your interviewee what and how they could have done better. If they weren't able to solve your problem to completion, give them pointers on how to improve, for example, "When seeing a problem like this, your first thought should be to use this data structure because of x, y, and z."
 
 _Don't ever put your interviewee down._ Everyone is here to learn. Don't forget that, and always try to be patient with your interviewee. 
+
+## A Note on Googling
+
+Googling during a whiteboarding pairing session is not forbidden. That being said, Googling should be done within reason. Obviously don't allow your interviewee to just google a solution to the problem. However, checking MDN for a useful method is acceptable, as well as checking Wikipedia for a definition. Use your best judgment as an interviewer. 
