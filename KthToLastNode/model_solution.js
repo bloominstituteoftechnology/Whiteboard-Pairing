@@ -43,5 +43,28 @@ function kthToLastNode(k, head) {
 
   // since leftNode is k nodes behind rightNode,
   // leftNode is now the kth to last node!
-  return leftNode;
+  return leftNode.value;
 }
+
+class ListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+let a = new ListNode("Australian Sheperd");
+let b = new ListNode("Beagle");
+let c = new ListNode("Cairne Terrier");
+let d = new ListNode("Dobermann");
+let e = new ListNode("English Mastiff");
+
+a.next = b;
+b.next = c;
+c.next = d;
+d.next = e;
+
+/* Some console.log tests */
+console.log(kthToLastNode(2, a));   // should print 'Dobermann'
+console.log(kthToLastNode(5, a));   // should print 'Australian Sheperd'
+console.log(kthToLastNode(3, c));   // should print 'Cairne Terrier'
