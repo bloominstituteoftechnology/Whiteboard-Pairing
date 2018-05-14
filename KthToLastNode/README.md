@@ -1,6 +1,6 @@
 # Kth to Last Node in a Singly-Linked List
 
-Given a pointer to the head element of a linked list, write a function that also takes an integer paramter `k` and returns the kth to last node of the list.
+Given a pointer to the head element of a linked list, write a function that also takes an integer parameter `k` and returns the kth to last node of the list.
  
  For example:
  ```js
