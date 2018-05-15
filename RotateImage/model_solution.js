@@ -31,7 +31,7 @@ function rotateImage(matrix) {
 console.log(rotateImage([
   [1, 2],
   [3, 4]
-]));    // should print [ [2, 4], [1, 3] ]
+]));    // should print [ [ 2, 4 ], [ 1, 3 ] ]
 
 console.log(rotateImage([
   [1, 1, 5, 9, 9],
