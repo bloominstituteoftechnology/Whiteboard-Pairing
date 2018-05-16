@@ -12,8 +12,10 @@ function rotateImage(matrix) {
       matrix[j][len - i - 1] = matrix[len - i - 1][len - j - 1];
       matrix[len - i - 1][len - j - 1] = matrix[len - j - 1][i];
       matrix[len - j - 1][i] = bucket;
+
     }
   }
+  
   return matrix;
 }
 
