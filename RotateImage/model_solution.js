@@ -1,21 +1,15 @@
-/*
+/* 
   Iterative in-place solution using two loops
 */
 function rotateImage(matrix) {
-  const len = matrix.length;
-
-  for (let i = 0; i < len / 2; i++) {
-    for (let j = i; j < len - i - 1; j++) {
-
-      let bucket = matrix[i][j];
-      matrix[i][j] = matrix[j][len - i - 1];
-      matrix[j][len - i - 1] = matrix[len - i - 1][len - j - 1];
-      matrix[len - i - 1][len - j - 1] = matrix[len - j - 1][i];
-      matrix[len - j - 1][i] = bucket;
-
+  matrix.forEach(row => row.reverse());
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < i; j++) {
+      // array destructuring ftw!
+      [matrix[i][j], matrix[j][i]] = [matrix[j][i], matrix[i][j]];
     }
   }
-  
+
   return matrix;
 }
 
@@ -24,7 +18,7 @@ function rotateImage(matrix) {
   However, this is not an in-place solution since `map`
   returns copies of the mapped array
 */
-function rotateImage(matrix) {
+function functionalRotateImage(matrix) {
   return matrix.map(m => m.reverse())[0]
                .map((cv, i) => matrix.map((rv, j) => matrix[j][i]));
 }
