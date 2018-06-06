@@ -1,6 +1,6 @@
 # Integer Pairs
 
-Write a function `integerPairs` to find all pairs of integers within an input array which sum up to a specified input value `k`. 
+Write a function `integerPairs` to find and print out all pairs of integers within an input array which sum up to a specified input value `k`. 
 
 There are multiple ways to do this, depending upon whether you want to favor runtime or space. 
 
