@@ -27,7 +27,7 @@ function sortTopScores(scores, highestPossibleScore) {
     // think about what the time complexity is in terms of 
     // the total number of input elements
     for (let i = 0; i < count; i++) {
-      scoredScores.push(score);
+      sortedScores.push(score);
     }
   }
 
