@@ -20,8 +20,8 @@ function naiveClimbStairs(n) {
   Recursive solution that utilizes memoization
 
   This solution should run much faster than the naive
-  solution, since it isn't repeating work, however its
-  theoretical runtime bound still remains O(3^n)
+  solution, since it isn't repeating work, giving it 
+  a runtime of O(n).
   
   Also takes O(n) additional space over the naive 
   solution due to the added usage of the cache array
