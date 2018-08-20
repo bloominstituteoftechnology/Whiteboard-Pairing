@@ -2,7 +2,7 @@
 
 A min heap is a binary tree data structure that satisfies the following property: The value of every parent node is less than or equal to the values of their direct children nodes. It follows then that the node at the root of the tree is the element in the heap with the minimal value. 
 
-![min heap](https://www.tutorialspoint.com/data_structures_algorithms/heap_data_structure.htm)
+![min heap](min_heap_example.jpg)
 
 Implement a min heap data structure with at least the following methods:
 
