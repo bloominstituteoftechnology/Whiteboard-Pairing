@@ -5,7 +5,7 @@ You're trying to make your fortune by trading Bitcoin. Suppose you want to autom
 Examples:
 ```js
 const bitcoinPrices = [1050, 270, 1540, 3800, 2];
-findMaxProfit(bitcoinPrices);   // should return 2260, which is the max profit you can make from these prices by buying at 1540 and selling at 3800
+findMaxProfit(bitcoinPrices);   // should return 3530, which is the max profit you can make from these prices by buying at 270 and selling at 3800
 ```
 
 Analyze the time and space complexity of your solution. 
