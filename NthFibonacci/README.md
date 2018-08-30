@@ -15,7 +15,8 @@ This solution works fine for small inputs, but even for n = 50, this function ta
 
 Implement a more efficient implementation that can handle `n` values at least up to 1000.
 
-Analyze the time and space complexity of your implementation. 
-
 ```js
-console.log(betterNthFib(1000));  // should print 
+console.log(betterNthFib(1000));  // should print 4.346655768693743e+208 in less than 1 second
+```
+
+Analyze the time and space complexity of your implementation. 
