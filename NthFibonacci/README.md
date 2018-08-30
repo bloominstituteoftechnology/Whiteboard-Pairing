@@ -13,4 +13,9 @@ function naiveNthFib(n) {
 
 This solution works fine for small inputs, but even for n = 50, this function takes a significant amount of time to run. 
 
-Implement a more efficient 
+Implement a more efficient implementation that can handle `n` values at least up to 1000.
+
+Analyze the time and space complexity of your implementation. 
+
+```js
+console.log(betterNthFib(1000));  // should print 
