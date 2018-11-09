@@ -4,12 +4,30 @@ Write a function `reverseLinkedList` that receives a linked list node as input a
 value of the new head of the list. 
 
 Here is a simple Linked List class:
+
+JavaScript:
+
 ```js
 class ListNode {
   constructor(value) {
     this.value = value;
     this.next = null;
   }
+}
+```
+
+Swift:
+
+```swift
+class ListNode<T> {
+
+	var value: T?
+	var next: ListNode?
+	
+	init(value: T?) {
+		self.value = value
+		self.next = nil
+	}
 }
 ```
 
