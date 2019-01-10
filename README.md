@@ -1,5 +1,7 @@
 # Whiteboard Pairing
 
+When doing this exercise as the _interviewee_, you should record yourself answering the interviewers question.  This must be uploaded on youtube and the link is one of the components of your development journal.  If you prefer, you may make the video private and invite your PM.  This will be of great use when working with your career coach!
+
 In order to get you guys more practice whiteboarding, we're going to have you pair up with a partner once a week and have you both swap between being an interviewer and an interviewee. This ensures that each student gets in at least one live whiteboard practice session a week.
 
 This is how it's going to work. Everyone will be a assigned a problem. This will be the problem that you will pose to your interviewee when it's your turn to be interviewer. You're being assigned the problem at the beginning because it's very important that you get familiar with your assigned problem. In order to be an effective interviewer, you need to know the problem you're asking inside and out. 
