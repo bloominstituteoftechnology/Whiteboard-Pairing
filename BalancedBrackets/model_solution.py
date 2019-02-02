@@ -24,14 +24,14 @@ def balancedBrackets(str):
         ']': True
     }
 
-    for i in range(len(line)):
+    for c in line:
         # if we see an opener, push it onto our stack
-        if line[i] in openers:
-            stack.append(line[i])
-        elif line[i] in closers:
+        if c in openers:
+            stack.append(c)
+        elif c in closers:
             # if the closer doesn't correspond to the most
             # recently seen unclosed opener, return false
-            if (openers[stack.pop()] != line[i]):
+            if (openers[stack.pop()] != c):
                 return False
 
     return len(stack) == 0
