@@ -15,7 +15,7 @@
 function isBinarySearchTree(root) {
   // start at the root, with an arbitrarily low lower bound
   // and an arbitrarily high upper bound
-  if (root === null) return true // Empty BTN edge case
+  if (root === null) return false // Empty BTN edge case
   const nodeAndBoundsStack = [];
   nodeAndBoundsStack.push({node: root, lowerBound: -Infinity, upperBound: Infinity});
 
