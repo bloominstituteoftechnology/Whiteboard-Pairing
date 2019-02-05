@@ -19,7 +19,7 @@ class TempTracker {
 
   insert(temp) {
     // for mode
-    // increment the number of times this temp as appeared
+    // increment the number of times this temp has appeared
     this.occurrences[temp]++;
     // update our maxOccurences and mode variables if necessary
     if (this.occurrences[temp] > this.maxOccurrences) {
