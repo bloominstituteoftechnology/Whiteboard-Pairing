@@ -27,6 +27,7 @@ function makeBoard(n) {
 ## Example
 
 `robotPaths(3)` should create a 3 X 3 board, count the following paths, and return `12`
+
 | S |   |   |
 |---|---|---|
 | 1 |   |   |
