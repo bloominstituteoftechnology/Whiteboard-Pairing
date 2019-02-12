@@ -61,6 +61,8 @@ s.push(4);
 
 let sortedStack = sortStack(s); // sortedStack is also a Stack instance
 sortedStack.printContents();    // should print 4, 10
+
+// print a newline
 console.log();
 
 s.push(8);
