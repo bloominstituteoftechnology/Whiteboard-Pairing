@@ -4,22 +4,22 @@ def spiralCopy(inputMatrix):
     numRows = len(inputMatrix)
     numCols = len(inputMatrix[0])
 
-    # // keep track of where we are along each
-    # // of the four sides of the matrix
+    # keep track of where we are along each
+    # of the four sides of the matrix
     topRow = 0
     bottomRow = numRows - 1
     leftCol = 0
     rightCol = numCols - 1
 
     result = []
-    # // iterate throughout the entire matrix
+    # iterate throughout the entire matrix
     while topRow <= bottomRow and leftCol <= rightCol:
-        # // iterate along the top row from left to right
+        # iterate along the top row from left to right
         for i in range(leftCol, rightCol + 1):
             result.append(inputMatrix[topRow][i])
         topRow += 1
 
-        # // iterate along the right column from top to bottom
+        # iterate along the right column from top to bottom
         for i in range(topRow, bottomRow + 1):
             result.append(inputMatrix[i][rightCol])
         rightCol -= 1
