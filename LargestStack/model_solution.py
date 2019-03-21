@@ -30,7 +30,7 @@ class MaxStack:
         # latest max value, add it to the stack
         # of max values as the new max
         peekValue = self.maxValues.peek()
-        if peekValue is None or item > peekValue:
+        if peekValue is None or item >= peekValue:
             self.maxValues.push(item)
 
     def pop(self):
