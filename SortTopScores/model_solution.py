@@ -15,7 +15,7 @@ def sort_top_scores(scores, highest_possible_score):
   # iterate through our score_counts list
   # for each count, append the score that many number 
   # of times to our sorted_scores list
-  for score in range(highest_possible_score, -1, -1):
+  for score in reverse(range(highest_possible_score)):
     count = score_counts[score]
     # even though there is a nested loop in this for loop,
     # think about what the time complexity of this function
