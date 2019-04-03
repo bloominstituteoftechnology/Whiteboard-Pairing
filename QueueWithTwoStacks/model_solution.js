@@ -29,20 +29,20 @@ class Queue {
         this.outStack.push(this.inStack.pop());
       }
     }
-    return this.outStack[0];
+    return this.outStack[this.outStack.length - 1];
   }
 }
 
 /* Some console.log tests */
 const q = new Queue();
-console.log(q.peek());   // should print undefined
+console.log(q.peek()); // should print undefined
 
 q.enqueue(10);
-console.log(q.peek());   // should print 10
+console.log(q.peek()); // should print 10
 
 q.enqueue(9);
 q.enqueue(8);
 
-console.log(q.dequeue());   // should print 10
-console.log(q.dequeue());   // should print 9
-console.log(q.dequeue());   // should print 8
+console.log(q.dequeue()); // should print 10
+console.log(q.dequeue()); // should print 9
+console.log(q.dequeue()); // should print 8
