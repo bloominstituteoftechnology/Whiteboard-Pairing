@@ -5,20 +5,16 @@
 def largestContiguousSum(arr):
     maxSum = 0
     currentSum = 0
-
-    for i in range(len(arr)):
+    
+    for i, _ in enumerate(arr):
         currentSum += arr[i]
+        
+        maxSum = max(currentSum, maxSum)
 
-        if maxSum < currentSum:
-            maxSum = currentSum
-        elif currentSum < 0:
+        if currentSum < 0:
             currentSum = 0
 
     return maxSum
-
-
-
-
 
 # Tests
 print(largestContiguousSum([5, -9, 6, -2, 3]))           # should print 7
