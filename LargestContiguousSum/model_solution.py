@@ -8,10 +8,10 @@ def largestContiguousSum(arr):
     
     for i, _ in enumerate(arr):
         currentSum += arr[i]
+        
+        maxSum = max(currentSum, maxSum)
 
-        if maxSum < currentSum:
-            maxSum = currentSum
-        elif currentSum < 0:
+        if currentSum < 0:
             currentSum = 0
 
     return maxSum
