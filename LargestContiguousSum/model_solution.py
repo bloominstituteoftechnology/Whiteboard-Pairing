@@ -16,7 +16,6 @@ def largestContiguousSum(arr):
 
     return maxSum
 
-
 # Tests
 print(largestContiguousSum([5, -9, 6, -2, 3]))           # should print 7
 print(largestContiguousSum([1, 23, 90, 0, -9]))          # should print 114
