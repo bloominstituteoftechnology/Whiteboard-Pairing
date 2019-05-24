@@ -22,10 +22,10 @@ class SuffixTrie:
     	    if letter not in node:
 		# insert an empty node at this letter
                 # so future letters can be added here
-    		    node[letter] = {}
-		# set this node as the current `node` so 
-		# we can continue traversing down it
-    		node = node[letter]
+    		node[letter] = {}
+	    # set this node as the current `node` so 
+            # we can continue traversing down it
+    	    node = node[letter]
 	# we've iterated through the entire string
         # and inserted every substring of the input string
 	# all that's left is to add the `end_symbol` to the end
