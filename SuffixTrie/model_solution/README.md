@@ -177,5 +177,210 @@ for yourself, you should see that the resulting trie looks like the
 following:
 
 ```
+{
+    "p": {
+          "o": {
+                "g": {
+                      "o": {"*": True}
+                }
+          }
+    }, 
+    "o": {"*": True}, <--- is this what we're supposed to get?
+    "g": {
+          "o": {"*": True}
+    }
+}
+```
+
+Wait, that's not right.. The root level "o" entry should have a nested
+"g" and then another "o" nested inside the "g" node, since "ogo" is a
+suffix of "pogo". 
+
+So it looks lik we have a problem with our implementation. The problem
+is that our current implementation isn't checking for if the letter
+we're trying to insert into a node in the trie already exists. So what's
+happening here is that we _did_ insert "ogo" at the root level of the
+trie, and then we continued on, inserting "go", and finally the last
+"o". But, since our code isn't checking if letters already exist in any
+given node, the act of inserting the last "o" overwrites the previous
+"ogo" entry. 
+
+We can remedy this pretty easily by changing our `populate_trie` to the
+following:
+
+```python
+def populate_trie(self, string):
+    node = self.root
+    index = 0
+    while index < len(string):
+        for letter in string[index:]:
+            # we'll add a check here to see if the letter already
+            # exists in the current node; if it does, then we 
+            # don't want to overwrite it 
+            if letter in node:
+                # only add a new hash table in the case that this
+                # node doesn't contain the given letter 
+                node[letter] = {}
+            node = node[letter]
+        node[self.end_symbol] = True
+        index += 1
+```
+
+This change will result in the following:
 
 ```
+{
+    "p": {
+          "o": {
+                "g": {
+                      "o": {"*": True}
+                }
+          }
+    }, 
+    "o": {  <--- this is what we expected to see 
+          "g": {
+                "o": {"*": True}
+          }
+    },
+    "g": {
+          "o": {"*": True}
+    }
+}
+```
+
+Now our implementation is producing the expected result! 
+
+### Step 5: Implementing `contains`
+
+Phew! That was a lot of work to get `populate_trie` working! The good
+news is that we're more than halfway through at this point. That's
+because the `contains` method looks very similar to the `populate_trie`
+method. 
+
+Let's step back and think about the logic of how we'll search through 
+the trie for some target string. Since our trie stores individual
+letters, it makes sense then to traverse our target string, checking
+along the way if the trie contains the letter in the node we're
+currently traversing on. 
+
+Our `populate_trie` method already performs traversal through the trie,
+so that's all logic we can re-use. All that's left then is to check to
+see if at each traversal, the letter in the trie matches the letter in
+the target string in the order that we're expecting. 
+
+Hashing this idea out into code, we might get something like this:
+
+```python
+def contains(self, string):
+    # we'll also keep track of the current node here so
+    # we know where in the trie we are as we're traversing
+    node = self.root
+    # iterate along the input string we're searching for
+    # in our trie
+    for letter in string:
+        # check if the current letter is not in the current node
+        if letter not in node:
+             # if it isn't, then we can stop here, since we know
+             # that the string can't be in the trie
+             return False
+        # otherwise, continue to traverse down the trie by 
+        # setting our `node` variable to be the node containing
+        # the current letter 
+        node = node[letter]
+    # at this point we've checked that every letter in the input 
+    # string is contained in our trie in the correct order, so
+    # we've found the string; let's finally check to make sure 
+    # the word ends with our ending symbol
+    return self.end_symbol in node
+```
+
+The last line in the above implementation is a bit a formality. After
+all, if a word in our trie _doesn't_ end with the ending symbol, well,
+that was because we forgot to add it ourselves. 
+
+As we can see though, our `contains` implementation looks a heck of a
+lot like our `populate_trie` implementation. 
+
+### Step 6: Cleaning up our code 
+
+There's a bit we can do here to clean up our implementation to make it
+more readable and more modular. One thing would be to split off some of
+the logic of our `populate_trie` function into a helper method. The
+helper method will be responsible for inserting a single substring of
+a given string into our trie, with the substring being delineated by the
+index of where the substring starts in the original string. So we might
+end up with something like this:
+
+```python
+def insert_substring_at(self, index, string):
+    # we'll move all of the traversal logic from our 
+    # `populate_trie` method into this helper 
+    node = self.root
+    for letter in string[index:]:
+        if letter not in node:
+            node[letter] = {}
+        node = node[letter]
+    node[self.end_symbo] = True
+
+def populate_trie(self, string):
+    # our `populate_trie` method will then just be 
+    # responsible for looping through the input string
+    # and passing in the index of each substring as it
+    # does so
+    for i in range(len(string)):
+        self.insert_substring_at(i, string)
+```
+
+This makes our implementation a bit cleaner, since now we have a
+separate functions, one for handling insertion of individual substrings,
+and the other responsible for iterating along the string and producing
+each substring to insert. 
+
+### Step 7: Analyzing time and space complexity
+
+To figure out the time complexity goes when it comes to creation, a helpful hint
+for figuring this out is to look at our `populate_trie` method before we
+split off the traversal logic into a helper function. 
+
+```python
+def populate_trie(self, string):
+    node = self.root
+    index = 0
+    while index < len(string):
+        for letter in string[index:]:
+            node[letter] = {}
+            node = node[letter]
+        node[self.end_symbol] = True
+        index += 1
+```
+
+Takinga a look at this code, we see that we have a while loop that
+iterates along the entire length of the input string, followed by a
+nested for loop along the entire length of the substring. In the worst
+case, these nested loops will yield an O(m^2) runtime, where m is the
+length of the input string. 
+
+As far as space complexity goes, we just determined that creation takes
+O(m^2) time. Then, since we're sticking all of those m^2 letters in our
+trie, it turns out that the space complexity of our trie data structure
+is proportional to our time complexity, so space complexity is also
+O(m^2) in this case. 
+
+What about searching for some given string in our trie? Well, in that
+case, we only ever have to perform the same number of checks as there
+are letters in our target string. The beauty of a trie data structure is
+that this fact holds true _regardless_ of how many strings are being
+stored in our trie. We could have a whole bunch of strings in a single
+trie and runtime for searching for any arbitrary string in the trie
+would always just be proportional to the length of the target string.
+Thus, searching through our trie takes O(m) time, where m is the length
+of whatever target string we'd like to search for. 
+
+So there you have it. That's a pretty thorough walkthrough of
+implementing a suffix trie data structure. Remember, the whole point of
+a trie data structure is to provide fast lookup of strings (think about
+what the runtime would be if we instead just had a bunch of strings in
+an array; what would the runtime be to search for a single string in
+that case?). However, the tradeoff we incur for this fast lookup is slow
+insertion as well as taking up a relatively large amount of memory. 
+
