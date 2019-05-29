@@ -5,16 +5,15 @@
 */
 
 function largestContiguousSum(arr) {
-  let maxSum = 0;
-  let sum = 0;
+  let maxSum = -Infinity;
+  let currentSum = 0;
 
   for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
+    currentSum += arr[i];
+    maxSum = math.max(maxSum, currentSum);
 
-    if (maxSum < sum) {
-      maxSum = sum;
-    } else if (sum < 0) {
-      sum = 0;
+    if (currentSum < 0) {
+        currentSum = 0;
     }
   }
 

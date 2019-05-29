@@ -1,14 +1,17 @@
-# We'll use a greedy algorithm to check to see if we have a 
-# new max sum as we iterate along the array. If at any time
-# our sum becomes negative, we reset the sum. 
+"""
+We'll use a greedy algorithm to check to see if we have a new `max_sum` as we
+iterate along the array. If at any time our sum becomes negative, we rest the
+current sum
+"""
+import math
 
 def largest_contiguous_sum(arr):
-    max_sum = 0
+    max_sum = -math.inf
     current_sum = 0
     
     for x in arr:
         current_sum += x
-        max_sum = max(currentSum, max_sum)
+        max_sum = max(current_sum, max_sum)
 
         if current_sum < 0:
             current_sum = 0
