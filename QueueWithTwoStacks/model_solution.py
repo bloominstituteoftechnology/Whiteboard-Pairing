@@ -7,8 +7,7 @@ class Queue:
   
 
   def enqueue(self, item):
-    self.inStack.insert(0, item)
-  
+    self.inStack.append(item) 
 
   def dequeue(self):
     # if the outStack is empty
@@ -16,9 +15,9 @@ class Queue:
     if len(self.outStack) == 0:
       # empty out the inStack into the outStack
       while len(self.inStack) > 0:
-        self.outStack.insert(0, self.inStack.pop(0))
+        self.outStack.append(self.inStack.pop())
       
-    return self.outStack.pop(0)
+    return self.outStack.pop()
 
 
   def peek(self):
@@ -27,7 +26,7 @@ class Queue:
         return None
     else:
       while len(self.inStack) > 0:
-        self.outStack.insert(0, self.inStack.pop(0))
+        self.outStack.append(self.inStack.pop())
     
     return self.outStack[0]
     
