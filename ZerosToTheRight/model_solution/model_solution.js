@@ -1,16 +1,42 @@
 function zerosToTheRight(arr) {
-    let nonZero = 0;
+    let left = 0;
+    let right = arr.length - 1;
+    let nZeros = 0;
 
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] !== 0) {
-            [arr[i], arr[nonZero]] = [arr[nonZero], arr[i]];
-            nonZero++;
+    while (left <= right) {
+        if (arr[left] === 0 && arr[right] !== 0) {
+            [arr[left], arr[right]] = [arr[right], arr[left]];
+            left++;
+            right--;
+            nZeros++;
+        } else {
+            if (arr[left] !== 0) {
+                left++;
+            }
+            if (arr[right] === 0) {
+                right--;
+                nZeros++;
+            }
         }
     }
 
     console.log(arr);
-    return nonZero;
+    return arr.length - nZeros;
 }
+
+// function zerosToTheRight(arr) {
+//     let nonZero = 0;
+// 
+//     for (let i = 0; i < arr.length; i++) {
+//         if (arr[i] !== 0) {
+//             [arr[i], arr[nonZero]] = [arr[nonZero], arr[i]];
+//             nonZero++;
+//         }
+//     }
+// 
+//     console.log(arr);
+//     return nonZero;
+// }
 
 console.log("Number of non-zero integers: ", zerosToTheRight([0, 3, 1, 0, -2]));
 // should print:

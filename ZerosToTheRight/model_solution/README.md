@@ -95,4 +95,114 @@ through the array tricky, along with the fact that removing elements
 from an array incurs an O(n) runtime in the worst case. 
 
 As an alternative to removing from the array, we can instead swap two
-elements in the array, which is an O(1) operation. 
+elements in the array, which is an O(1) operation. So if the question
+becomes "which elements are we looking to swap as we're iterating along
+the array?", the answer to that would be that we want to swap 0s on the
+left side of the array with non-0 values that are on the right side of
+the array. 
+
+Given that, we can keep track of two indices, one that starts at the
+left end of the array, the other that starts at the right end. These
+will be incremented until they meet in middle. While this is happening,
+if the left index value is a 0 at the same time that the right index is
+a non-0, then we'll swap those two values. Sketching this idea out, it
+might look something like this:
+
+```python
+def zeros_to_the_right(arr):
+    left = 0
+    right = len(arr) - 1
+    # keep iterating until the two indices meet in the middle
+    while left <= right:
+        # if the left index is a 0 and the right index is a non-0
+        if arr[left] == 0 and arr[right] != 0:
+            # swap them
+            arr[left], arr[right] = arr[right], arr[left]
+            # move the left and right indices towards the middle
+            # of the array so that we make progress 
+            left += 1
+            right -= 1
+```
+
+Ok, so what about when the left index is a non-0 and/or the right index
+is a 0? What do we do in those cases? As it stands, this code will very
+likely not terminate because it will just hang forever on the while
+loop. 
+
+Well, in a vacuum, when do we want the left index to be incremented?
+Again, we're looking to swap 0s on the left with non-0s on the right. So
+we _don't_ want the left index to be incremented when it's on a 0. That
+means that we _do_ want it to be incremented when it's a non-0.
+Likewise, with the right index, we want it to _not_ decrement when it's
+on a non-0 value, so we want it to be decremented when it's a 0. Let's
+add this to our implementation:
+
+```python
+def zeros_to_the_right(arr):
+    left = 0
+    right = len(arr) - 1
+    while left <= right:
+        if arr[left] == 0 and arr[right] != 0:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+        # we're already handling incrementing the left and right
+        # indices when we're swapping, so we need to stick the 
+        # new iteration logic in an else statement
+        else:
+            if arr[left] != 0:
+                left += 1
+            if arr[right] == 0:
+                right -= 1
+```
+
+With that logic added, we've ensured that the while loop will terminate
+and that the input array will be mutated to the desired state with 0s on
+the right and non-0 values on the left. But we aren't done yet, since
+our function needs to return the number of non-0 values in the array. 
+
+At this point, we could perform another walk through the array and count
+the number of non-0 values we see along the way, but we're trying to
+limit the number of walks we do through the array. Can we perform some
+extra work the first time we walk through the array that would tell us
+how many non-0 values exist in the array?
+
+Sure, we can simply increment a counter of non-0 values we encounter as
+we're performing our initial traversal through the array. We don't need
+to perform a whole other traversal in this case. 
+
+```python
+def zeros_to_the_right(arr):
+    left = 0
+    right = len(arr) - 1
+
+    # counter to keep track of number of non-0 values we see
+    n_non_zeros = 0
+
+    while left <= right:
+        if arr[left] == 0 and arr[right] != 0:
+            arr[left], arr[right] = arr[right], arr[left]
+            left += 1
+            right -= 1
+
+            # we encounter a non-0 value in this case
+            # increment our counter
+            n_non_zeros += 1
+
+        else:
+            if arr[left] != 0:
+                left += 1
+
+                # we encounter a non-0 value in this case
+                # increment our counter
+                n_non_zeros += 1
+
+            if arr[right] == 0:
+                right -= 1
+
+    return n_non_zeros
+```
+
+Lo and behold, we've implemented a working solution that only performs
+_one_ traversal through the array that also only allocates a constant
+amount of extra space! 
