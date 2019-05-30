@@ -1,11 +1,11 @@
 /* 
   Since we have a highest possible score, we can use 
-  a strategy known as a counting sort into to achieve
+  a strategy known as a counting sort to achieve
   a runtime faster than O(n log n).
  */
 
 function sortTopScores(scores, highestPossibleScore) {
-  // initialize an array with a length of highestScore
+  // initialize an array with a length of highestPossibleScore
   // then fill it with 0s
   const scoreCounts = Array(highestPossibleScore).fill(0);
   
