@@ -24,4 +24,9 @@ const matrix = [
     [98, 99, 101, 104, 190, 1009], 
 ];
 
-
+console.log(searchInSortedMatrix(matrix, 1));    // should print [0, 0]
+console.log(searchInSortedMatrix(matrix, 7));    // should print [0, 2]
+console.log(searchInSortedMatrix(matrix, 999));  // should print [0, 5]
+console.log(searchInSortedMatrix(matrix, 1001)); // should print [1, 5]
+console.log(searchInSortedMatrix(matrix, 104));  // should print [4, 3]
+console.log(searchInSortedMatrix(matrix, 1010)); // should print [-1, -1]
