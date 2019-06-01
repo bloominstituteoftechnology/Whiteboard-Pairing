@@ -1,6 +1,7 @@
 function spiralCopy(inputMatrix) {
   const numRows = inputMatrix.length;
   const numCols = inputMatrix[0].length;
+
   // keep track of where we are along each
   // of the four sides of the matrix
   let topRow = 0;
@@ -9,17 +10,21 @@ function spiralCopy(inputMatrix) {
   let rightCol = numCols - 1;
 
   const result = [];
+
   // iterate throughout the entire matrix
   while (topRow <= bottomRow && leftCol <= rightCol) {
     // iterate along the top row from left to right
     for (let i = leftCol; i <= rightCol; i++) {
       result.push(inputMatrix[topRow][i]);
     }
+
     topRow++;
+
     // iterate along the right column from top to bottom
     for (let i = topRow; i <= bottomRow; i++) {
       result.push(inputMatrix[i][rightCol]);
     }
+
     rightCol--;
 
     if (topRow <= bottomRow) {
@@ -27,6 +32,7 @@ function spiralCopy(inputMatrix) {
       for (let i = rightCol; i >= leftCol; i--) {
         result.push(inputMatrix[bottomRow][i]);
       }
+
       bottomRow--;
     }
 
@@ -35,6 +41,7 @@ function spiralCopy(inputMatrix) {
       for (let i = bottomRow; i >= topRow; i--) {
         result.push(inputMatrix[i][leftCol]);
       }
+
       leftCol++;
     }
   }
@@ -42,7 +49,7 @@ function spiralCopy(inputMatrix) {
   return result;
 }
 
-/* Some simple console.log tests */
+/* Some console.log tests */
 console.log(spiralCopy(
   [[1]]
 ));   // should print [1]
