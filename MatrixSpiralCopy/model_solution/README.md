@@ -84,3 +84,89 @@ for i in range(right_column, left_column + 1):
     # vary the column index while keeping the row index constant
     result.append(matrix[row_index][i])
 ```
+
+With all that said and done, we're able to iterate along our simple example
+matrix in every direction we need to (left-to-right, top-to-bottom, then
+right-to-left). Let's try to come up with an implementation that solves achieves
+the desired result for our simple four-element matrix.
+
+## Implementing our Strategy
+
+For our simple four-element matrix, we'll start off in the top left corner,
+traverse right to the end of the row, then start traversing from the top of the
+right column to the bottom, and then finally traverse from right to left along
+the bottom row. Cobbling the code that we've come up with so far to achieve
+this, we have:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    # iterate from right to left
+    for i in range(left_column, right_column + 1):
+        result.append(matrix[row_index][i])
+    # iterate from top to bottom
+    for i in range(top_row, bottom_row + 1):
+        result.append(matrix[i][column_index])
+    # iterate from right to left
+    for i in range(right_column, left_column + 1):
+        result.append(matrix[row_index][i])
+    return result
+```
+
+As of now, this code doesn't work. We haven't defined `left_column`,
+`right_column`, `top_row`, and `bottom_row`, as well as `row_index` and
+`column_index`. Let's go ahead and add those variables to our implementation:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    # left_column starts off at index 0
+    left_column = 0
+    # right_column is the last column of the matrix
+    right_column = len(matrix[0]) - 1
+    # top_row also starts off at index 0
+    top_row = 0
+    # bottom_row is the last row of the matrix
+    bottom_row = len(matrix) - 1
+    # column_index starts off as column 0
+    column_index = 0
+    # row_index starts off as the right-most row, since that's the
+    # row where we're going to be iterating from top to bottom
+    row_index = len(matrix[0]) - 1 
+
+    for i in range(left_column, right_column + 1):
+        result.append(matrix[row_index][i])
+    for i in range(top_row, bottom_row + 1):
+        result.append(matrix[i][column_index])
+    for i in range(right_column, left_column + 1):
+        result.append(matrix[row_index][i])
+
+    return result
+```
+
+It turns out we can consolidate the `column_index` and `row_index` variables
+into the `top_row` and `right_column` variables respectively. Doing so will
+yield us the following slightly cleaner implementation:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    left_column = 0
+    right_column = len(matrix[0]) - 1
+    top_row = 0
+    bottom_row = len(matrix) - 1
+
+    for i in range(left_column, right_column + 1):
+        # append all the elements along the top row
+        result.append(matrix[top_row][i])
+    for i in range(top_row, bottom_row + 1):
+        # append all the elements along the right column
+        result.append(matrix[i][right_column])
+    for i in range(right_column, left_column + 1):
+        # append all the elements along the bottom row
+        result.append(matrix[bottom_row][i])
+
+    return result
+```
+
+
