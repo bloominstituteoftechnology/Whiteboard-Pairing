@@ -24,13 +24,13 @@ def spiralCopy(inputMatrix):
 
         if topRow <= bottomRow:
             # iterate along the bottom row from right to left
-            for i in reversed(range(leftCol, rightCol + 1)):
+            for i in range(rightCol, leftCol + 1):
                 result.append(inputMatrix[bottomRow][i])
             bottomRow -= 1
 
         if leftCol <= rightCol:
             # iterate along the left column from bottom to top
-            for i in reversed(range(topRow, bottomRow + 1)):
+            for i in range(bottomRow, topRow + 1):
                 result.append(inputMatrix[i][leftCol])
             leftCol += 1
 
