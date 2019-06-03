@@ -31,7 +31,7 @@ We need to figure out how to tailor this idea to print the elements in spiral
 order, which is to say, in clockwise order starting at the top left corner and
 moving from the outer layers inward towards the center. 
 
-## Coming Up with a Strategy
+## Coming Up with a Strategy For a Simple Case
 
 Let's start off with a simple matrix example and think through how we'd traverse
 it in spiral order. Given the following matrix
@@ -66,8 +66,8 @@ We'll also need to be able to traverse along columns from bottom to top. We can
 achieve that with a simple change to the above pseudocode:
 
 ```python
-# simply reverse the start and end indices in the `range` function
-for i in range(bottom_row, top_row + 1):
+# reverse the result of the `range` iterator function to traverse backwards
+for i in reversed(range(top_row, bottom_row + 1)):
     result.append(matrix[i][column_index])
 ```
 
@@ -80,7 +80,8 @@ iterating along column values. The following code achieves this:
 
 ```python
 # iterate along the column indices from right to left
-for i in range(right_column, left_column + 1):
+# we'll have to reverse this one too 
+for i in reversed(range(left_column, right_column + 1)):
     # vary the column index while keeping the row index constant
     result.append(matrix[row_index][i])
 ```
@@ -108,7 +109,7 @@ def matrix_spiral_copy(matrix):
     for i in range(top_row, bottom_row + 1):
         result.append(matrix[i][column_index])
     # iterate from right to left
-    for i in range(right_column, left_column + 1):
+    for i in reversed(range(left_column, right_column + 1)):
         result.append(matrix[row_index][i])
     return result
 ```
@@ -138,7 +139,7 @@ def matrix_spiral_copy(matrix):
         result.append(matrix[row_index][i])
     for i in range(top_row, bottom_row + 1):
         result.append(matrix[i][column_index])
-    for i in range(right_column, left_column + 1):
+    for i in reversed(range(left_column, right_column + 1)):
         result.append(matrix[row_index][i])
 
     return result
@@ -162,11 +163,205 @@ def matrix_spiral_copy(matrix):
     for i in range(top_row, bottom_row + 1):
         # append all the elements along the right column
         result.append(matrix[i][right_column])
-    for i in range(right_column, left_column + 1):
+    for i in reversed(range(left_column, right_column + 1)):
         # append all the elements along the bottom row
         result.append(matrix[bottom_row][i])
 
     return result
 ```
 
+However, if we go ahead and test this implementation out, we'll see that it
+doesn't actually work for our simple example. This function returns `[1, 2, 2,
+4]`, not the expected answer of `[1, 2, 4, 3]`. Why is this the case?
 
+This is happening because our `top_row` variable stays at 0 such that we iterate
+to the end of the top row and then start iterating along the left column while
+the `top_row` variable is still 0, which means we end up printing the last
+element of the top row, which is also the first element of the right column,
+twice. We can fix this easily by incrementing the `top_row` variable. 
+
+This in fact ends up being the desirable result when we generalize our
+implementation to work with larger matrices. Once we've incremented along a row,
+we don't need to touch it again, i.e. the new top row will be the next row down
+in the matrix. We'll want to do the same thing with the bottom row and the left
+and right columns too, i.e., shift them "inwards" towards the center of the
+matrix after we're done traversing them. 
+
+Updating our implementation one more time yields us the following:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    left_column = 0
+    right_column = len(matrix[0]) - 1
+    top_row = 0
+    bottom_row = len(matrix) - 1
+
+    for i in range(left_column, right_column + 1):
+        result.append(matrix[top_row][i])
+    # move the top_row index towards the center of the matrix
+    top_row += 1
+    for i in range(top_row, bottom_row + 1):
+        result.append(matrix[i][right_column])
+    # move the right_column index towards the center of the matrix
+    right_column -= 1
+
+    for i in reversed(range(left_column, right_column + 1)):
+        result.append(matrix[bottom_row][i])
+
+    return result
+```
+
+The above implementation now works for our simple example!
+
+## Generalizing our Strategy to Larger Matrices
+
+Ok, now we need to figure out how to be able to handle any matrix. One thing
+we'll certainly need is to be able to traverse from bottom to top along the
+left-most column, along with having that column index move towards the center of
+the matrix after we're done with it. Adding that logic to what we have is pretty
+simple:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    left_column = 0
+    right_column = len(matrix[0]) - 1
+    top_row = 0
+    bottom_row = len(matrix) - 1
+
+    for i in range(left_column, right_column + 1):
+        result.append(matrix[top_row][i])
+    top_row += 1
+    for i in range(top_row, bottom_row + 1):
+        result.append(matrix[i][right_column])
+    right_column -= 1
+    for i in reversed(range(left_column, right_column + 1)):
+        result.append(matrix[bottom_row][i])
+    # move the bottom_row index towards the center of the matrix
+    bottom_row -= 1
+    # iterate from bottom to top along the left column
+    for i in reversed(range(top_row, bottom_row + 1)):
+        result.append(matrix[i][left_column])
+    left_column += 1
+
+    return result
+```
+
+At this point, we're almost there; there's just one more crucial piece that's
+missing. As of now, this code only iterates along the outer layer of a matrix.
+We need to be able to traverse through all the inner layers as. How should we go
+ahead and implement that?
+
+The easiest way would probably be to throw all of our traversal logic into a
+while loop. We'll keep looping until the `top_row` index reaches the
+`bottom_row` index and the `left_column` index reaches the `right_column` index:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    left_column = 0
+    right_column = len(matrix[0]) - 1
+    top_row = 0
+    bottom_row = len(matrix) - 1
+    
+    while top_row <= bottom_row and left_column <= right_column:
+        for i in range(left_column, right_column + 1):
+            result.append(matrix[top_row][i])
+        top_row += 1
+        for i in range(top_row, bottom_row + 1):
+            result.append(matrix[i][right_column])
+        right_column -= 1
+        for i in reversed(range(left_column, right_column + 1)):
+            result.append(matrix[bottom_row][i])
+        bottom_row -= 1
+        for i in reversed(range(top_row, bottom_row + 1)):
+            result.append(matrix[i][left_column])
+        left_column += 1
+
+    return result
+```
+
+If we test this implementation on the following matrix
+
+```
+[</br>
+    [1, 2, 3, 4, 5],</br>
+    [6, 7, 8, 9, 10],</br>
+    [11, 12, 13, 14, 15],</br>
+    [16, 17, 18, 19, 20],</br>
+]
+```
+
+we'll see that it returns the expected result!
+
+## Improving our Implementation
+
+Let's try a few more test cases to make sure we haven't missed anything we
+needed to account for. A single element matrix like `[[1]]` works fine. What
+about a matrix that only contains one row? Something like `[[1, 2]]`. If we try
+running our implementation with this matrix, we get back `[1, 2, 1]`, which
+definitely isn't right. What's the problem here?
+
+Our while loop keeps running so long as `top_row <= bottom_row` and `left_column
+<= right_column`, but these variables are being updated within the body of the
+while loop. So it turns out some of the traversal loops within the while loop
+are running when we actually don't want them to, but the while loop alone isn't
+actually able to check this since the updates are happening in the middle of an
+iteration. 
+
+More specifically, we want to explicitly check that the `top_row` index isn't
+out of bounds before we run the for loop that traverses from right to left along 
+the bottom row. If we don't, then our code copies elements that it thinks are
+still within bounds of the matrix when we've in fact already traversed out of
+the bounds of the matrix. Similarly, we also need to check that the
+`left_column` index isn't out of bounds before we run the for loop that
+traverses from bottom to top along the left column for the same reason.
+
+Adding those checks to our implementation, we get:
+
+```python
+def matrix_spiral_copy(matrix):
+    result = []
+    left_column = 0
+    right_column = len(matrix[0]) - 1
+    top_row = 0
+    bottom_row = len(matrix) - 1
+    
+    while top_row <= bottom_row and left_column <= right_column:
+        for i in range(left_column, right_column + 1):
+            result.append(matrix[top_row][i])
+        top_row += 1
+        for i in range(top_row, bottom_row + 1):
+            result.append(matrix[i][right_column])
+        right_column -= 1
+        # check if there's still a top row we need to traverse
+        if top_row <= bottom_row:
+            for i in reversed(range(left_column, right_column + 1)):
+                result.append(matrix[bottom_row][i])
+            bottom_row -= 1
+        # check if there's still a left column we need to traverse
+        if left_column <= right_column:
+            for i in reversed(range(top_row, bottom_row + 1)):
+                result.append(matrix[i][left_column])
+            left_column += 1
+
+    return result
+```
+
+This time, when we test this implementation against the input matrix `[[1, 2]]`
+we get the desired output!
+
+## Evaluating our Implementation
+
+The problem asks us to copy all of the elements of the input matrix, so we can't
+get away from touching every single element in the matrix. So our running time
+is proportional to the total number of elements in the matrix, which is given by
+the height of the matrix * the width. Hence the running time of our algorithm is
+O(n * m). 
+
+For the space complexity, we're copying every matrix element into another array,
+such that the total amount of extra memory we're consuming is proportional to
+the total number of matrix elements, so the space complexity is also O(n * m).
+This is fine in this case since the problem is specifically asking us to copy
+the matrix elements into another array. 
