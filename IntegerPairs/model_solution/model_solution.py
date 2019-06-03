@@ -39,16 +39,15 @@ def integerPairs(arr, k):
   # Use a hash to store key-value pairs of numbers
   hash = {}
   # Loop through the arr
-  for i in range(0, len(arr)):
+  for elem in arr:
     # check to see if the complement for the
     # current element exists in the hash
-    if k - arr[i] in hash.values():
-      print(arr[i], k - arr[i])
+    if k - elem in hash:
+      print(elem, k - elem)
       found_pair = True
     else:
-      # if it doesn't, then we hash this number
-      # +1 so get around 0-indexing
-      hash[i+1] = arr[i]
+      # if it doesn't, then we add this elem to the hash with the value True
+      hash[elem] = True
   if not found_pair:
     print('No pairs found')
         
