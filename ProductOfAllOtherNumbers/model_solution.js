@@ -35,5 +35,36 @@ console.log(getProductsOfAllIntsExceptAtIndex(
 ));   // should print [120, 60, 40, 30, 24]
 
 console.log(getProductsOfAllIntsExceptAtIndex(
-  [9, 90]
+ 
 ));   // sould print [90, 9]
+
+//Solution number 2
+
+let testArray = [1, 7, 3, 4];
+
+function returnProduct(array) {
+  if (array.length < 2) {
+    throw new Error("you need an array of at least 2 numbers to proceed.");
+  }
+
+  //map over array, multiplying each number by the all of the other numbers
+  let resultsArray = array.map((num, index) => {
+    let tempArray = array.slice(); //copy the original array
+    tempArray.splice(index, 1); //splice the array without current integer
+    const product = tempArray.reduce((acc, val) => {
+      //use reduce to multiply the array values together
+      return acc * val;
+    });
+    return product; //return the product of all array values
+  });
+  return resultsArray; //return the array of products
+}
+
+returnProduct(testArray);
+
+console.log(returnProduct([1, 2, 3, 4, 5]));
+console.log(returnProduct([9, 90]));
+
+console.log(returnProduct([]));
+
+
