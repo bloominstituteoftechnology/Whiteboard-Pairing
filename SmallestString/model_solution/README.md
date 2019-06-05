@@ -120,7 +120,7 @@ def shortest_string(str1, str2):
     len1 = len(str1) - 1
     len2 = len(str2) - 1
 
-    while s1 < len1 and s2 < len2:
+    while s1 <= len1 and s2 <= len2:
         # check if both characters are letters 
         if str1[s1].isalpha() and str2[s2].isalpha():
             if str1[s1] == str2[s2]:
@@ -147,7 +147,7 @@ def shortest_string(str1, str2):
                 return str1 if str1[s1] < str2[s2] else str2
     # we've reached the end of one of the strings
     # the smallest string is the shorter one
-    return str1 is len1 < len2 else str2
+    return str1 if len1 < len2 else str2
 
 ```
 
@@ -175,3 +175,16 @@ def parse_number(string, index):
     # don't forget to convert the string number to an int type 
     return (int(number_value), number_length)
 ```
+
+## Evaluating our Implementation
+
+Our implementation traverses along both strings at the same time, but returns as
+soon as it finds a mismatched character between the two strings. Thus, its
+runtime is proportional to the length of the shorter of the two strings for a
+runtime of O(n). 
+
+With regards to space complexity, extra memory is allocated when we run into a
+number and then need to parse it to figure out its actual value including all
+the following consecutive numbers. So in the worst case, if both strings contain
+only numeric characters, then that much additional memory will need to be
+allocated accordingly, which comes out to O(n) space complexity. 
