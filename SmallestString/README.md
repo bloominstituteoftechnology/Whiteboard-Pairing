@@ -9,13 +9,13 @@ number.
 ```
 Examples:
 
-input: "a", "b"</br>
+input: "a", "b"
 expected output: "a" since "a" comes before "b" alphabetically 
 
-input: "a1", "a2"</br>
+input: "a1", "a2"
 expected output: "a1" since 1 comes before 2
 
-input: "a10", "a2"</br>
+input: "a10", "a2"
 expected output: "a2" since 2 comes before 10 
 ```
 
