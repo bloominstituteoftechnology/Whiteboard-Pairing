@@ -6,6 +6,7 @@ of lowercase letters and numbers: [a - z][0 - 9]. Letters earlier in the alphabe
 are considered smaller. Consecutive digits in the string are considered a single 
 number.
 
+```
 Examples:
 
 input: "a", "b"</br>
@@ -16,5 +17,6 @@ expected output: "a1" since 1 comes before 2
 
 input: "a10", "a2"</br>
 expected output: "a2" since 2 comes before 10 
+```
 
 Analyze the time and space complexity of your solution.
