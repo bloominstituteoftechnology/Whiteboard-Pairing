@@ -8,13 +8,13 @@ number.
 
 Examples:
 
-input: "a", "b"
+input: "a", "b"</br>
 expected output: "a" since "a" comes before "b" alphabetically 
 
-input: "a1", "a2"
+input: "a1", "a2"</br>
 expected output: "a1" since 1 comes before 2
 
-input: "a10", "a2"
+input: "a10", "a2"</br>
 expected output: "a2" since 2 comes before 10 
 
 Analyze the time and space complexity of your solution.
