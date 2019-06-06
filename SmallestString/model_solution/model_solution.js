@@ -15,7 +15,7 @@ function parseNumber(string, index) {
     let numberLength = 0;
     let numberValue = '';
 
-    while (index <= string.length - 1 && isDigit(string[index])) {
+    while (index < string.length && isDigit(string[index])) {
         numberLength++;
         numberValue += string[index];
         index++;
