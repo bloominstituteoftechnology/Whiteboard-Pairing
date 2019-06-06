@@ -2,7 +2,7 @@ def parse_number(string, index):
     number_length = 0
     number_value = ''
     
-    while index <= len(string) - 1 and string[index].isdigit():
+    while index < len(string) and string[index].isdigit():
         number_length += 1
         number_value += string[index] 
         index += 1
