@@ -17,7 +17,7 @@ def time_planner(a, b, duration):
   return ()
 
 
-# Some simple print tests
+# Tests
 print(time_planner(
   [(10, 50), (60, 120), (140, 210)],
   [(0, 15), (60, 70)],

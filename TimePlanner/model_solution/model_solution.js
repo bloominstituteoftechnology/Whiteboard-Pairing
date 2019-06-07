@@ -31,7 +31,7 @@ function timePlanner(a, b, duration) {
   return [];
 }
 
-/* Some simple console.log tests */
+// Tests
 console.log(timePlanner(
   [[10, 50], [60, 120], [140, 210]],
   [[0, 15], [60, 70]],
