@@ -110,7 +110,7 @@ by determining the max starting time and min ending time of the two time slots.
 Then, we'll decide which index to update by checking which time slot has the
 smaller ending time.
 
-## Implementing Our Strategy
+## Implementing and Evaluating Our Strategy
 
 In pseudocode, that could look like this:
 
