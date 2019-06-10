@@ -1,6 +1,7 @@
 # Product of All Other Numbers
 
-Write a function that receives an array of integers and returns an array of the products.
+Write a function that receives an array of integers and returns an array of the 
+products.
 
 For example, given 
 ```
@@ -16,5 +17,7 @@ by calculating
 ```
 
 If your interviewee comes up with a solution that utilizes division, that's fine. Once they get through that, challenge them to then come up with a solution that doesn't utilize division!
+Afterwards, try challenging them to come up with a solution that _doesn't_
+utilize division. 
 
 Analyze the time and space complexity of your solution.
