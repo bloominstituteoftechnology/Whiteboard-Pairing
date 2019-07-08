@@ -16,7 +16,6 @@ def zeros_to_the_right(arr):
                 right -= 1
                 n_zeros += 1
 
-    print(arr)
     return len(arr) - n_zeros
 
 # def zeros_to_the_right(arr):
@@ -27,7 +26,6 @@ def zeros_to_the_right(arr):
 #            arr[i], arr[non_zero_index] = arr[non_zero_index], arr[i]
 #            non_zero_index += 1
 #    
-#    print(arr)
 #    return non_zero_index
 
 print("Number of non-zero integers: ", zeros_to_the_right([0, 3, 1, 0, -2])) 
