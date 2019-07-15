@@ -161,7 +161,7 @@ def search_in_sorted_matrix(matrix, target):
             # if it is, shift one column to the left
             col -= 1
         # check if the value at these coordinates is < target
-        if matrix[row][col] < target:
+        elif matrix[row][col] < target:
             # if it is, shift down one row
             row += 1
         # otherwise, the value at these coordinates is == target
