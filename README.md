@@ -1,4 +1,4 @@
-# Whiteboard Pairing
+# Whiteboard Pairing - Winston
 
 When doing this exercise as the _interviewee_, you should record yourself
 answering the interviewers question.  This must be uploaded on youtube and the
