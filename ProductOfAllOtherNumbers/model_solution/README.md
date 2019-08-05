@@ -112,11 +112,5 @@ def product_of_all_others(arr):
 
 Short and sweet! 
 
-Unfortunately, when most interviewers ask this question, they disallow the use
-of division when it comes to solving this problem. Apparently using division
-isn't a clever enough way of doing it, so they just ban it from the get-go. Ok,
-back to the drawing board then.
-
-## Coming Up With Another Strategy
-
-
+As a follow up, think about how you would solve this problem if division was
+disallowed. 
