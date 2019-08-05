@@ -53,10 +53,10 @@ Let's say we have the following sorted matrix:
 
 ```
 [
-    [1, 4, 7, 12, 15, 997, 999],
-    [2, 5, 19, 32, 35, 1001, 1007],
-    [4, 8, 24, 34, 36, 1008, 1015],
-    [40, 41, 42, 44, 45, 1018, 1020],
+    [1,  4,  7,   12,  15,  997,  999],
+    [2,  5,  19,  32,  35,  1001, 1007],
+    [4,  8,  24,  34,  36,  1008, 1015],
+    [40, 41, 42,  44,  45,  1018, 1020],
     [98, 99, 101, 104, 190, 1021, 1025],
 ]
 ```
@@ -161,7 +161,7 @@ def search_in_sorted_matrix(matrix, target):
             # if it is, shift one column to the left
             col -= 1
         # check if the value at these coordinates is < target
-        if matrix[row][col] < target:
+        elif matrix[row][col] < target:
             # if it is, shift down one row
             row += 1
         # otherwise, the value at these coordinates is == target

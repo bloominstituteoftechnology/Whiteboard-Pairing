@@ -16,7 +16,7 @@
 //   // of jumps needed to reach arr[end]
 //   let min = Infinity;
 //   for (let i = start + 1; i <= end && i <= start + arr[start]; i++) {
-//     const jumps = minJumps(arr, start, end);
+//     const jumps = minJumps(arr, i, end);
 //     if (jumps !== Infinity && jumps + 1 < min) {
 //       min = jumps + 1;
 //     }

@@ -15,7 +15,7 @@ def zeros_to_the_right(arr):
             if arr[right] == 0:
                 right -= 1
                 n_zeros += 1
-
+    
     print(arr)
     return len(arr) - n_zeros
 

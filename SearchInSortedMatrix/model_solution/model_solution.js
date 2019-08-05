@@ -3,9 +3,9 @@ function searchInSortedMatrix(matrix, target) {
     let col = matrix[0].length - 1;
 
     while (row < matrix.length && col >= 0) {
-        if (matrix[col][row] > target) {
+        if (matrix[row][col] > target) {
             col--;
-        } else if (matrix[col][row] < target) {
+        } else if (matrix[row][col] < target) {
             row++;
         } else {
             return [row, col];
