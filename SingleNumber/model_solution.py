@@ -18,7 +18,8 @@ def singleNumber(nums):
             s.add(num)
     return s.pop()
 
-  """
+
+"""
   Approach #2
   Time Complexity: O(n)
   Space Complexity: O(1)
@@ -40,10 +41,13 @@ def singleNumber(nums):
   => 5
   """
 
-  
-  
-def singleNumber(nums):
+
+def singleNumberXOR(nums):
 
     for i in range(1, len(nums)):
         nums[0] ^= nums[i]
     return nums[0]
+
+
+print(singleNumber([1, 1, 5, 2, 2, 3, 3]))  # should return 5
+print(singleNumberXOR([8, 8, 2, 2, 3, 3, 1]))  # should return 1
