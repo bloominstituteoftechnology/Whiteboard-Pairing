@@ -31,6 +31,8 @@ nums2 = [99, -1, -100, 3]
 
 
 def rotate2(nums, k):
+    # % k to make sure it's less than total length of nums array
+    k %= len(nums)
 
     def reverse(nums, start, end):
         while start < end:
