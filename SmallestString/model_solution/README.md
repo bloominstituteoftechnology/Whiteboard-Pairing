@@ -56,7 +56,7 @@ In pseudocode, that may look something like:
 def shortest_string(str1, str2):
     iterate along str1 to see if it contains any consecutive numbers
         if it does, keep iterating along till we reach the end of the number
-            store the value of the number and its index 
+            store the value of the number and the index it starts at in the string
     do the same thing with str2
     if there are no consecutive numbers in either string
         fall back to our first-pass logic and return the smaller string 
@@ -154,7 +154,7 @@ def shortest_string(str1, str2):
 This implementation should do the trick, in lieu of some testing. We left some
 logic relegated to a helper function that we haven't defined yet. The
 `parse_number` function will be handed a string and an index in the string where 
-the the number to parse starts. It will return the consecutive numeric value of
+the number to parse starts. It will return the consecutive numeric value of
 the number it is parsing as well the number's length. The length is needed in
 the case that both numbers turn out be the same, in which case we'll need to
 advance the string index by the length of the number so that we can continue
