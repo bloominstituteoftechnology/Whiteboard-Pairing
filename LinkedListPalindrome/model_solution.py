@@ -15,14 +15,10 @@
 # top element of the stack (so we're checking the elements of the
 # first half of the linked list in reverse order).
 
-
 class ListNode:
     def __init__(self, value):
         self.value = value
         self.next = None
-
-
-
 
 def isLinkedListPalindrome(listNode):
     fast = listNode
@@ -53,8 +49,6 @@ def isLinkedListPalindrome(listNode):
 
     return True
 
-
-
 a = ListNode(1)
 b = ListNode(2)
 c = ListNode(3)
@@ -79,6 +73,3 @@ print(isLinkedListPalindrome(a))   # should print true
 print(isLinkedListPalindrome(b))   # should print false since now the 'a' node is not included in the linked list
 
 print(isLinkedListPalindrome(w))   # should print true
-
-
-
