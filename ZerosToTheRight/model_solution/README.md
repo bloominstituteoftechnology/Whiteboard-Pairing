@@ -103,7 +103,7 @@ the array.
 
 Given that, we can keep track of two indices, one that starts at the
 left end of the array, the other that starts at the right end. These
-will be incremented until they meet in middle. While this is happening,
+will be incremented until they meet in the middle. While this is happening,
 if the left index value is a 0 at the same time that the right index is
 a non-0, then we'll swap those two values. Sketching this idea out, it
 might look something like this:
@@ -205,4 +205,5 @@ def zeros_to_the_right(arr):
 
 Lo and behold, we've implemented a working solution that only performs
 _one_ traversal through the array that also only allocates a constant
-amount of extra space! 
+amount of extra space! We're not going to be able to do better than that,
+so we'll consider this problem thoroughly solved. 
