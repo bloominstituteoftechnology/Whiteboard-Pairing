@@ -5,3 +5,15 @@
 # If all are zero, return true.
 # If not zero, return false.
 # return character_counter + character_counter + character_counter == 0
+
+
+def balancedBrackets(string):
+    pass
+
+
+print(balancedBrackets('{}[]()'))        # should print True
+print(balancedBrackets('{(([]))}'))      # should print True
+print(balancedBrackets('{ [ ] ( ) }'))   # should print True
+print(balancedBrackets('{ [ ( ] ) }'))   # should print False
+print(balancedBrackets('('))             # should print False
+print(balancedBrackets('{[}'))           # should print False
