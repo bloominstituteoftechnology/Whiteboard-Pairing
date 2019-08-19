@@ -8,24 +8,38 @@
 
 
 def balancedBrackets(string):
+    array = list(string)
     bracket_counter = 0
     braces_counter = 0
     parantheses_counter = 0
-    for character in string:
-        if character == "[":
+    openers = {
+        "(": ")"
+        "{": "}"
+        "[": "]"
+    }
+    for character in range(len(array)):
+        if array[character] == "[":
             bracket_counter += 1
-        if character == "{":
+        if array[character] == "{":
             braces_counter += 1
-        if character == "(":
+        if array[character] == "(":
             parantheses_counter += 1
-        if character == "]":
+        if array[character] == "]":
             bracket_counter -= 1
-        if character == "}":
+        if array[character] == "}":
             braces_counter -= 1
-        if character == ")":
+        if array[character] == ")":
             parantheses_counter -= 1
 
-    return bracket_counter + braces_counter + parantheses_counter == 0
+    if bracket_counter + braces_counter + parantheses_counter != 0:
+        return False
+    for character in range(len(array)):
+         if array[character] == "[":
+            if array[character + 1] ==
+        if array[character] == "{":
+            braces_counter += 1
+        if array[character] == "(":
+            parantheses_counter += 1
 
 
 print(balancedBrackets('{}[]()'))        # should print True
