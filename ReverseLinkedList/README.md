@@ -20,14 +20,13 @@ Swift:
 
 ```swift
 class ListNode<T> {
-
-	var value: T?
-	var next: ListNode?
+  var value: T?
+  var next: ListNode?
 	
-	init(value: T?) {
-		self.value = value
-		self.next = nil
-	}
+  init(value: T?) {
+    self.value = value
+    self.next = nil
+  }
 }
 ```
 
