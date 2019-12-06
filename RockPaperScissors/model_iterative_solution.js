@@ -1,5 +1,5 @@
 /**
- * Time Complexity  : O(3^n)
+ * Time Complexity  : O(3 * 3^n)
  * Space Complexity : O(3^n)
  * 
  * If the code is confusing, insert this
