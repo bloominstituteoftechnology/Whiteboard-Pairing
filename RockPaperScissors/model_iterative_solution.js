@@ -3,7 +3,7 @@
  * Space Complexity : O(3^n)
  * 
  * If the code is confusing, insert this
- * console.log between lines 21-22 ->
+ * console.log between lines 25-26 ->
  * console.log('pointers =', pointers);
  * 
  * Credits: William Connaster (WilliamConnatser),
