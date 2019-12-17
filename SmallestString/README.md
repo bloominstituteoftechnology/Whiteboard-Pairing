@@ -3,7 +3,7 @@
 Write a function that takes two strings and returns the "smallest" string. If
 both strings are equal, you may return either string. Strings will only consist 
 of lowercase letters and numbers: [a - z][0 - 9]. Letters earlier in the alphabet 
-are considered smaller. Consecutive digits in the string are considered a single 
+are considered smaller. Consecutive digits in the string should be considered a single 
 number.
 
 ```
