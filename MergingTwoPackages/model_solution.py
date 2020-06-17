@@ -1,7 +1,4 @@
-
-
 def getIndicesOfItemWeights(arr, limit):
-
   # use a dictionary to store item weights
   # along with their 'complement'
   o = {}
