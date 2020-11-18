@@ -1,19 +1,23 @@
-function createMinimalBST(sortedArray) {
-  return createMinimalBSTHelper(sortedArray, 0, sortedArray.length - 1);
+function createMinHeightBST(sortedArray) {
+  const left = 0;
+  const right = sortedArray.length - 1;
+
+  return recHelper(sortedArray, left, right);
 }
 
-function createMinimalBSTHelper(sortedArray, left, right) {
-  if (right < left) return null;
+function recHelper(sortedArray, left, right) {
+  if (left > right) {
+    return null;
+  }
 
-  const mid = Math.floor((left + right) / 2);
-  const node = new BinaryTreeNode(sortedArray[mid]);
+  const midpoint = (math.floor((right - left)) / 2) + left;
+  const root = new BinaryTreeNode(sortedArray[midpoint]);
 
-  node.left = createMinimalBSTHelper(sortedArray, left, mid - 1);
-  node.right = createMinimalBSTHelper(sortedArray, mid + 1, right);
+  root.left = recHelper(sortedArray, left, midpoint - 1);
+  root.right = recHelper(sortedArray, midpoint + 1, right);
 
-  return node;
+  return root;
 }
-
 
 class BinaryTreeNode {
   constructor(value) {
@@ -23,43 +27,56 @@ class BinaryTreeNode {
   }
 }
 
-/* Helper function to validate that the created tree is a valid BST */
-function isBinarySearchTree(root) {
-  const nodeAndBoundsStack = [];
-  nodeAndBoundsStack.push({node: root, lowerBound: -Infinity, upperBound: Infinity});
-  while (nodeAndBoundsStack.length) {
-    const nodeAndBounds = nodeAndBoundsStack.pop();
-    const node = nodeAndBounds.node;
-    const lowerBound = nodeAndBounds.lowerBound;
-    const upperBound = nodeAndBounds.upperBound;
-    if (node.value <= lowerBound || node.value >= upperBound) {
-        return false;
-    }
-    if (node.left) {
-      nodeAndBoundsStack.push({node: node.left, lowerBound: lowerBound, upperBound: node.value});
-    }
-    if (node.right) {
-      nodeAndBoundsStack.push({node: node.right, lowerBound: node.value, upperBound: upperBound});
-    }
+function isBST(root, minBound, maxBound) {
+  if (root === null) {
+    return true;
   }
-  return true;
+
+  if (root.value < minBound || root.value > maxBound) {
+    return false;
+  }
+
+  const left = isBST(root.left, minBound, root.value - 1);
+  const right = isBST(root.right, root.value + 1, maxBound);
+
+  return left && right;
 }
 
-/* Helper function to check the max height of a BST */
-function maxDepth(node) {
-  if (!node) return 0;
-  return 1 + Math.max(maxDepth(node.left), maxDepth(node.right));
+function findBSTMaxHeight(node) {
+  if (node === null) {
+    return 0;
+  }
+
+  return 1 + Math.max(findBSTMaxHeight(node.left), findBSTMaxHeight(node.right));
 }
 
-/* Some console.log tests */
+function isBSTMinHeight(root, N) {
+  const height = findBSTMaxHeight(root);
+  const shouldEqual = Math.floor(Math.log2(N)) + 1;
+
+  return height === shouldEqual;
+}
+
+function countBSTNodes(root, count) {
+  if (root === null) {
+    return count;
+  }
+
+  countBSTNodes(root.left, count);
+  count++;
+  countBSTNodes(root.right, count);
+}
+
+// Some tests
 let sortedArray = [1, 2, 3, 4, 5, 6, 7];
-let bst = createMinimalBST(sortedArray);
+let bst = createMinHeightBST(sortedArray);
 
-console.log(isBinarySearchTree(bst));   // should print true
-console.log(maxDepth(bst));             // should print 3
+console.log(isBST(bst, -Infinity, Infinity));
+console.log(isBSTMinHeight(bst, sortedArray.length));
 
 sortedArray = [4, 10, 11, 18, 42, 43, 47, 49, 55, 67, 79, 89, 90, 95, 98, 100];
-bst = createMinimalBST(sortedArray);
+bst = createMinHeightBST(sortedArray);
 
-console.log(isBinarySearchTree(bst));   // should print true
-console.log(maxDepth(bst));             // should print 5
+console.log(isBST(bst, -Infinity, Infinity));
+console.log(isBSTMinHeight(bst, sortedArray.length));
+
