@@ -54,7 +54,7 @@ def is_bst_min_height(root, N):
     bst_max_height = find_bst_max_height(root)
     should_equal = math.floor(math.log2(N)) + 1
     
-    return bst_max_height == math.floor(should_equal)
+    return bst_max_height == should_equal
 
 
 # Helper function to count the number of nodes for a given BST 
