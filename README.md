@@ -96,7 +96,7 @@ problem, the interviewer will note it, and you'll be extremely unlikely to be
 successful with the problem.
 
 Keep [Polya's Problem Solving
-Techniques](https://github.com/LambdaSchool/CS-Wiki/wiki/Polya%27s-Problem-Solving-Techniques)
+Techniques](https://github.com/BloomInstituteOfTechnology/CS-Wiki/wiki/Polya%27s-Problem-Solving-Techniques)
 in mind.
 
 Barely any whiteboarding questions will have obvious answers. Don't get
@@ -118,7 +118,7 @@ Finally, **don't cheat**. _You'll only be cheating yourself_. Here at LS, the go
 is to get practice coming into a semi-stressful environment and being presented
 with a problem for which you don't know the answer, and have to think on your
 feet. If you practice the problem in advance, you'll lose out on that
-opportunity. There's no penalty at Lambda School if you don't get the answer.
+opportunity. There's no penalty at BloomTech if you don't get the answer.
 Use the time to practice solving difficult problems from a cold start.
 
 ## A Note on Googling
